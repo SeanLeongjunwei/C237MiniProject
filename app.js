@@ -18,9 +18,11 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root', 
     password: '',
-    database: 'c237_fitnessapp'
+    database: 'c237_fitnessapp',
     host: 'freedb.tech',
-    user: 'freedb_23034133'
+    user: 'freedb_23034133',
+    password: 'c3!Daj#7@Qu%8$r',
+    database: 'freedb_c237_fitnessapp'
 });
 
 connection.connect((err) => {
