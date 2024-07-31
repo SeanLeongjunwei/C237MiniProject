@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Fitness App</title>
+    <style>
+        .form-container {
+            background-color: #CA63C0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .form-container label, 
+        .form-container input, 
+        .form-container textarea, 
+        .form-container button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .form-container input, 
+        .form-container textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/mnt/data/image.png" alt="Fitness App Logo" style="height: 70px;">
+            </a>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container form-container">
+        <div class="text-center"><h2>Update Product</h2></div>
+        <% if (product) { %> 
+            <form action="/editProduct/<%= product.productId %>" method="POST" enctype="multipart/form-data" onsubmit="return handleFormSubmit(event)">
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" value="<%= product.productName %>" required>
+
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" min="0" step="0.01" value="<%= product.price %>" required>
+
+                <label for="flavours">Flavours:</label>
+                <input type="text" id="flavours" name="flavours" value="<%= product.flavours %>" required>
+
+                <label for="details">Description:</label>
+                <textarea id="details" name="details" rows="5" cols="60" required><%= product.details %></textarea>
+
+                <label for="image">Current Image:</label>
+                <input type="text" name="currentImage" value="<%= product.image %>" disabled>
+                <img src="/images/<%= product.image %>" width="20%">
+
+                <label for="image">New Image:</label>
+                <input type="file" id="image" name="image" accept="image/*">
+
+                <button type="submit">Update Product</button>
+            </form>
+        <% } else { %>
+            <p>No product found.</p>
+        <% } %>
+        <a href="/">Back</a>
+    </div>
+</body>
+</html>
